@@ -1,0 +1,27 @@
+{
+  "name": "feehi/yii2-cdn",
+  "type": "library",
+  "description": "yii2 cdn",
+  "keywords": ["yii2","oss","yii2-oss", "qiniu", "yii2-qiniu"],
+  "homepage": "http://blog.feehi.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "liufee",
+      "email": "job@feehi.com",
+      "homepage": "http://blog.feehi.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "feehi\\cdn\\": "src/"
+    }
+  },
+  "require" : {
+    "qiniu/php-sdk": "^7.2",
+    "qcloud/cos-sdk-v5": ">=1.0",
+    "netease/nos-php-sdk": "1.0.0",
+    "aliyuncs/oss-sdk-php": "~2.0"
+  }
+}
