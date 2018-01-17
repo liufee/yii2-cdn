@@ -8,8 +8,14 @@
 
 namespace feehi\cdn;
 
+use Exception;
+
 class DummyTarget extends TargetAbstract implements TargetInterface
 {
+    public function init()
+    {
+    }
+
     public function __set($key, $val)
     {
         $this->$key = $val;
@@ -43,5 +49,10 @@ class DummyTarget extends TargetAbstract implements TargetInterface
     public function getCdnUrl($destFile)
     {
         return $destFile;
+    }
+
+    public function getClient()
+    {
+        throw new Exception("must use cdn can call this method");
     }
 }

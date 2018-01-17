@@ -26,6 +26,12 @@ abstract class TargetAbstract extends Component implements TargetInterface
         parent::init();
         if( empty($this->bucket) ) throw new Exception("Cdn bucket cannot be blank");
         if( empty($this->host) ) throw new Exception("Cdn host cannot be blank");
+        if (stripos($this->host, 'http://') !== 0 && stripos($this->host, 'https://') !== 0  && stripos($this->host, '//') !== 0) {
+            throw new Exception("host must begin with http://, https:// or //");
+        }
+        if( $this->host[strlen($this->host) - 1] !== '/' ){
+            $this->host .= '/';
+        }
     }
 
     public function getLastError()
@@ -35,6 +41,9 @@ abstract class TargetAbstract extends Component implements TargetInterface
 
     public function getCdnUrl($destFile)
     {
+        if( strpos($destFile, '/') === 0 ){
+            $destFile = substr($destFile, 1);
+        }
         return $this->host . $destFile;
     }
 
