@@ -12,6 +12,8 @@ use Exception;
 
 class DummyTarget extends TargetAbstract implements TargetInterface
 {
+    public $host = "";
+
     public function init()
     {
     }
@@ -48,7 +50,11 @@ class DummyTarget extends TargetAbstract implements TargetInterface
 
     public function getCdnUrl($destFile)
     {
-        return $destFile;
+        if( empty($destFile) ) return '';
+        if( strpos($destFile, '/') === 0 ){
+            $destFile = substr($destFile, 1);
+        }
+        return $this->host . $destFile;
     }
 
     public function getClient()
