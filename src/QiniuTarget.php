@@ -24,7 +24,7 @@ class QiniuTarget extends TargetAbstract implements TargetInterface
     /** @var  BucketManager */
     protected $client;
 
-    private $lastError = null;
+    protected $lastError = null;
 
     public function init()
     {
