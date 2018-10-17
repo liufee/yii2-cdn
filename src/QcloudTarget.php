@@ -43,14 +43,14 @@ class QcloudTarget extends TargetAbstract implements TargetInterface
         ]);
     }
 
-    public function upload($localFile, $destFile)
+    public function upload($localFile, $destFile, $type = 'upload')
     {
 
         try {
             $result = $this->client->upload(
                 $bucket = $this->getWholeBucketName(),
                 $key = $destFile,
-                $body = fopen($localFile,'r+')
+                $body = ($type == 'base64' ? $localFile :fopen($localFile,'r+'))
             );
             return true;
         } catch (\Exception $e) {
